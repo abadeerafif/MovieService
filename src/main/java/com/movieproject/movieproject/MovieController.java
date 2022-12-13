@@ -51,6 +51,8 @@ public class MovieController {
 	@RequestMapping(method=RequestMethod.POST,value="/Movies")
 	public void AddMovie(@RequestBody Movie movie)
 	{
+		// TODO use ResponseEntity
+		// return ResponseEntity.status(OK).body(service.AddMovie(movie));
 		service.AddMovie(movie);
 		
 	}
