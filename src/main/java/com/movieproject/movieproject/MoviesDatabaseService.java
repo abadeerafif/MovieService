@@ -6,47 +6,48 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class MoviesDatabaseService {
-	
+
 	@Autowired
-	private MoviesRepo moviesRepo;	
-	
-	
+	private MoviesRepo moviesRepo;
+
+
 	public List<Movie> GetMovies()
 	{
-		
-		
+
+
 		return moviesRepo.findAll();
-		
-		
-		
+
+
+
 	}
-	
+
 	public Optional<Movie> GetMovieByName(String name)
 	{
 		return moviesRepo.findById(name);
-		
-		
+
+
 	}
 	public void AddMovie(Movie movie)
 	{
+		// TODO check movie doesnt exist already
 		moviesRepo.save(movie);
-		
+
 	}
 	public void DeleteMovie(String movie_name)
 	{
 		moviesRepo.deleteById(movie_name);
-		
+
 	}
 	public void UpdateMovie(String movie_name,Movie updatedMovie)
 	{
-		
+		// TODO check movie exists before updating instead of adding then deleting
 		moviesRepo.save(updatedMovie);
 		if(!movie_name.equals(updatedMovie.getMovieName()))
 		{
 			DeleteMovie(updatedMovie.getMovieName());
-			
+
 		}
-		
+
 	}
 
 
